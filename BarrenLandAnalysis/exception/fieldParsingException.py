@@ -1,0 +1,2 @@
+class FieldParsingException(Exception):
+    pass
