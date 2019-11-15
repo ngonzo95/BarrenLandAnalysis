@@ -52,4 +52,15 @@ with pytest. To run the test suite you must
 be in the virtualenv. Then you can run `pytest`
 in the root directory.
 
-## Design Decisions 
+## Design Decisions
+This project was built using sympy's
+shapely.geomety package. I chose to use this
+package because it already had efficient
+operations for removing parts of a shape. The
+major difficulty with working with this package
+was transforming inputs from discrete to
+continuous space. The basic solution to this was
+to add 1 to the max points of the rectangles. For
+parsing string input I used the re package. This
+package is well tested and makes updating parsing
+rules easy.
