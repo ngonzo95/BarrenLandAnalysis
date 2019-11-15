@@ -57,3 +57,15 @@ def test_fieldWithAreaSplitIntoSixSectorsWorks():
     expectedAreas.sort()
 
     assert field.area() == expectedAreas
+
+
+def test_fieldWithMultipleOnePointConnectionsDividingField():
+    field = Field(100, 100)
+    field.removeBarrenArea(box(30, 0, 40, 30))
+    field.removeBarrenArea(box(40, 30, 50, 80))
+    field.removeBarrenArea(box(50, 80, 60, 100))
+
+    expectedAreas = [30*30 + 40*50 + 50*20, 60*30 + 50*50 + 40*20]
+    expectedAreas.sort()
+
+    assert field.area() == expectedAreas
