@@ -24,6 +24,7 @@ def test_happyPathTestExample2(monkeypatch):
     assert len(mock.printCalls) == 1
     assert mock.printCalls[0] == "22816 192608"
 
+
 def test_whenExceptionOccursPrintsMessage(monkeypatch):
     mock = MockInputOutput()
     monkeypatch.setattr('builtins.input', mock.mock_input)
