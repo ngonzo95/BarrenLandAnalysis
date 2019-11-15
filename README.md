@@ -64,3 +64,11 @@ to add 1 to the max points of the rectangles. For
 parsing string input I used the re package. This
 package is well tested and makes updating parsing
 rules easy.
+
+## Future Work
+If I spent more time on the project the first
+thing I would is edit the function so that it
+could load input from a file or have the input
+piped in without displaying the prompt text. The
+Next thing I would do is allow for more shapes to
+be included.
