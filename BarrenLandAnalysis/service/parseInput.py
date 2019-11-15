@@ -7,6 +7,7 @@ _RECTANGLE_SET_REGEX = "^{(?:\"[^\"]+\"(?:, |))*}$"
 _RECTANGLE_EXTRACTION_REGEX = "\"[^\"]+\"(?=, |})"
 _COORD_EXTRACTION_REGEX = "^\"(\\d+) (\\d+) (\\d+) (\\d+)\"$"
 
+
 def parseBarrenFieldInput(inputString):
     _validateInputString(inputString)
     matches = re.findall(_RECTANGLE_EXTRACTION_REGEX, inputString)
