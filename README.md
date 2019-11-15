@@ -21,7 +21,7 @@ I recommend doing so using a virtualenv but this is extra
 work and is not necessary
 
 ### Starting the App
-to start the app run main.py using `python
+to start the app run main.py using `python3
 main.py`. Once the application starts it will
 prompt you to input the set barren fields. The
 project was designed to handle farms of arbitrary
