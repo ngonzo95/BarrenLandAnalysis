@@ -50,3 +50,12 @@ def test_poorlyFormattedRectangleRaisesAndSaysWhichRectangle():
                        match="Rectangle at position 2 is misformatted"):
         serviceUnderTest.parseBarrenFieldInput(
             "{\"0 292 399 307\", \"1 50 250 300\", \"80 80 80 12 12\"}")
+
+
+def test_inputWithVariousWhiteSpacesWorks():
+    inputString = "{ \"0 292 399 307\",\"1 50 250 300\"\t,\n \"80 80 80 80\" }"
+    expectedOutput = [DiscreteRectangle(0, 292, 399, 307),
+                      DiscreteRectangle(1, 50, 250, 300),
+                      DiscreteRectangle(80, 80, 80, 80)]
+    assert (serviceUnderTest.parseBarrenFieldInput(inputString)
+            == expectedOutput)

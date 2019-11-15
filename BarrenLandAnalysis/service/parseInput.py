@@ -3,8 +3,8 @@ from BarrenLandAnalysis.exception.fieldParsingException import (
     FieldParsingException)
 import re
 
-_RECTANGLE_SET_REGEX = "^{(?:\"[^\"]+\"(?:, |))*}$"
-_RECTANGLE_EXTRACTION_REGEX = "\"[^\"]+\"(?=, |})"
+_RECTANGLE_SET_REGEX = "^{\\s*(?:\"[^\"]+\"\\s*,?\\s*)*}$"
+_RECTANGLE_EXTRACTION_REGEX = "\"[^\"]+\"(?=\\s*(?=,|}))"
 _COORD_EXTRACTION_REGEX = "^\"(\\d+) (\\d+) (\\d+) (\\d+)\"$"
 
 
