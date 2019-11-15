@@ -3,10 +3,13 @@ from BarrenLandAnalysis.exception.fieldParsingException import (
     FieldParsingException)
 import re
 
+_RECTANGLE_SET_REGEX = "^{(?:\"[^\"]+\"(?:, |))*}$"
+_RECTANGLE_EXTRACTION_REGEX = "\"[^\"]+\"(?=, |})"
+_COORD_EXTRACTION_REGEX = "^\"(\\d+) (\\d+) (\\d+) (\\d+)\"$"
 
 def parseBarrenFieldInput(inputString):
     _validateInputString(inputString)
-    matches = re.findall("\"[^\"]+\"(?=, |})", inputString)
+    matches = re.findall(_RECTANGLE_EXTRACTION_REGEX, inputString)
 
     rectangles = []
     for idx, fieldStr in enumerate(matches):
@@ -22,12 +25,12 @@ def _validateInputString(inputString):
     if not (inputString.startswith("{") and inputString.endswith("}")):
         raise FieldParsingException("Missing curly brace in input")
 
-    if not re.fullmatch("^{(?:\"[^\"]+\"(?:, |))*}$", inputString):
+    if not re.fullmatch(_RECTANGLE_SET_REGEX, inputString):
         raise FieldParsingException("Rectangle set is improperly formatted")
 
 
 def _getCoords(fieldStr, rectanglePos):
-    coords = re.fullmatch("^\"(\\d+) (\\d+) (\\d+) (\\d+)\"$", fieldStr)
+    coords = re.fullmatch(_COORD_EXTRACTION_REGEX, fieldStr)
     if not coords:
         raise FieldParsingException("Rectangle at position "
                                     + str(rectanglePos) + " is misformatted")
