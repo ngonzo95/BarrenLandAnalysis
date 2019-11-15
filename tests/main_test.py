@@ -17,8 +17,8 @@ def test_happyPathTestExample2(monkeypatch):
     monkeypatch.setattr('builtins.input', mock.mock_input)
     monkeypatch.setattr('builtins.print', mock.mock_print)
 
-    mock.stdInString = ("{\"48 192 351 207\", \"48 392 351 407\", "
-                        + "\"120 52 135 547\", \"260 52 275 547\"}")
+    mock.stdInString = ("{ \"48 192 351 207\", \"48 392 351 407\", \n"
+                        + "\"120 52 135 547\", \"260 52 275 547\" }")
     unit()
 
     assert len(mock.printCalls) == 1
