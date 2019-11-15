@@ -36,11 +36,11 @@ inputing the set start with a '{' and end with a
 space does not matter. Here is an
 example input:
 ```
-{"10 0 20 400", "0 50 600 60"}
+{ "0 9 399 20", "50 0 59 599"}
 ```
 The output for this would be:
 ```
-500 18950 211860
+450 3060 28950 196860
 ```
 When the output has multiple fields the area of
 those fields will be sorted from smallest to
