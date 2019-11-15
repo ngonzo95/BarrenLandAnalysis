@@ -11,10 +11,14 @@ returned separately.
 
 ## Running the Application
 ### Installation
-This project was written in python using a
- virtualenv. To use the virtualenv clone the
- application, go into the project and run `. virtualenv/bin/activate`. If you are running in
-a windows environment run `virtualenv/bin/activate.bat`. to exit from the virtualenv run `deactivate`.
+Before we begin in order to install this application you
+must have [Python3](https://realpython.com/installing-python/) and [pip](https://realpython.com/what-is-pip/#installing-packages-with-pip) installed. If you do not please do so before you begin. Once you have these you can simply
+run the following script in the root folder of the project
+```
+python3 -m pip install -r requirements.txt
+```
+I recommend doing so using a virtualenv but this is extra
+work and is not necessary
 
 ### Starting the App
 to start the app run main.py using `python
