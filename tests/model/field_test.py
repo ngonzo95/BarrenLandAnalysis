@@ -44,7 +44,7 @@ def test_fieldWithMultipleAreasSortedCorrectly():
     field = Field(100, 100)
     field.removeBarrenArea(box(20, 0, 30, 100))
     field.removeBarrenArea(box(60, 0, 65, 100))
-    assert field.area() == [35 * 100, 30 * 100, 20 * 100]
+    assert field.area() == [20 * 100, 30 * 100, 35 * 100]
 
 
 def test_fieldWithAreaSplitIntoSixSectorsWorks():
@@ -54,6 +54,6 @@ def test_fieldWithAreaSplitIntoSixSectorsWorks():
     field.removeBarrenArea(box(0, 50, 100, 70))
 
     expectedAreas = [30 * 50, 20 * 50, 10 * 50, 30 * 30, 20 * 30, 10 * 30]
-    expectedAreas.sort(reverse=True)
+    expectedAreas.sort()
 
     assert field.area() == expectedAreas

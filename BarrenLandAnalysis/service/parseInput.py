@@ -1,26 +1,34 @@
 from BarrenLandAnalysis.model.discreteRectangle import DiscreteRectangle
 from BarrenLandAnalysis.exception.fieldParsingException import (
     FieldParsingException)
+import re
 
 
 def parseBarrenFieldInput(inputString):
+    _validateInputString(inputString)
+    matches = re.findall("\"[^\"]+\"(?=, |})", inputString)
 
-    if not (inputString.startswith("{") and inputString.endswith("}")):
-        raise FieldParsingException("Missing curly brace in input")
-
-    inputString = inputString.strip("{")
-    inputString = inputString.strip("}")
     rectangles = []
+    for idx, fieldStr in enumerate(matches):
+        coords = _getCoords(fieldStr, idx)
 
-    if inputString == "":
-        return []
-
-    for fieldStr in inputString.split(", "):
-        fieldStr = fieldStr.strip("\"")
-        print(fieldStr)
-        coords = fieldStr.split(" ")
         r = DiscreteRectangle(int(coords[0]), int(coords[1]),
                               int(coords[2]), int(coords[3]))
         rectangles.append(r)
-
     return rectangles
+
+
+def _validateInputString(inputString):
+    if not (inputString.startswith("{") and inputString.endswith("}")):
+        raise FieldParsingException("Missing curly brace in input")
+
+    if not re.fullmatch("^{(?:\"[^\"]+\"(?:, |))*}$", inputString):
+        raise FieldParsingException("Rectangle set is improperly formatted")
+
+
+def _getCoords(fieldStr, rectanglePos):
+    coords = re.fullmatch("^\"(\\d+) (\\d+) (\\d+) (\\d+)\"$", fieldStr)
+    if not coords:
+        raise FieldParsingException("Rectangle at position "
+                                    + str(rectanglePos) + " is misformatted")
+    return coords.groups()

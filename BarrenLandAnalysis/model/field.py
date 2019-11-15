@@ -13,7 +13,7 @@ class Field:
         for field in self._fieldPolygon:
             fieldAreas.append(field.area)
 
-        fieldAreas.sort(reverse=True)
+        fieldAreas.sort()
         return fieldAreas
 
     def removeBarrenArea(self, barrenField):

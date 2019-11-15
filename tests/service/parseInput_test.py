@@ -10,10 +10,12 @@ import pytest
 def test_ensureParserChecksForBracesAndWorksForNoInputs():
     assert serviceUnderTest.parseBarrenFieldInput("{}") == []
 
-    with pytest.raises(FieldParsingException):
+    with pytest.raises(FieldParsingException,
+                       match="Missing curly brace in input"):
         serviceUnderTest.parseBarrenFieldInput("\"\"}")
 
-    with pytest.raises(FieldParsingException):
+    with pytest.raises(FieldParsingException,
+                       match="Missing curly brace in input"):
         serviceUnderTest.parseBarrenFieldInput("{\"\"")
 
 
@@ -33,3 +35,18 @@ def test_multipleBoxesEntered_parsesCorrectly():
 
     assert (serviceUnderTest.parseBarrenFieldInput(inputString)
             == expectedOutput)
+
+
+def test_poorlySeperatedSetOfRectanglesRaisesAnException():
+    with pytest.raises(FieldParsingException,
+                       match="Rectangle set is improperly formatted"):
+        serviceUnderTest.parseBarrenFieldInput(
+            "{\"0 292 399 307\", blag\"1 50 250 300\", "
+            + "\"80 80 80 80\"}")
+
+
+def test_poorlyFormattedRectangleRaisesAndSaysWhichRectangle():
+    with pytest.raises(FieldParsingException,
+                       match="Rectangle at position 2 is misformatted"):
+        serviceUnderTest.parseBarrenFieldInput(
+            "{\"0 292 399 307\", \"1 50 250 300\", \"80 80 80 12 12\"}")
