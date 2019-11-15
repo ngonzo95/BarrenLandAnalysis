@@ -2,6 +2,9 @@ from shapely.geometry import box
 
 
 class DiscreteRectangle:
+    """
+    Represents a rectangle on discrete space.
+    """
     def __init__(self, x1, y1, x2, y2):
         self._startCorner = (x1, y1)
         self._endCorner = (x2, y2)
@@ -15,6 +18,9 @@ class DiscreteRectangle:
                 + str(self._endCorner))
 
     def createContinuosBox(self):
+        """
+        Creates a continous representation of the rectangle using shapely.
+        """
         return box(self._startCorner[0],
                    self._startCorner[1],
                    self._endCorner[0] + 1,
