@@ -14,7 +14,7 @@ def main():
 
     try:
         # Convert the input into a list of rectangles
-        strInput = input()
+        strInput = input("Please input the barren field set: ")
         barrenFields = parseBarrenFieldInput(strInput)
     except FieldParsingException as e:
         # If there is a parsing error alert the user and exit

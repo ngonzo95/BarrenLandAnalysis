@@ -46,5 +46,5 @@ class MockInputOutput:
     def mock_print(self, str):
         self.printCalls.append(str)
 
-    def mock_input(self):
+    def mock_input(self, str):
         return self.stdInString
